@@ -51,7 +51,8 @@ def test_memory_usage_in_loop(numpy_image, batch_size, width, height,
     if torch.cuda.is_available():
         device = "cuda"
     else:
-        device = "cpu"
+        print("CUDA not available")
+        return
     img = cv2.resize(numpy_image, (width, height))
     input_tensor = preprocess_image(img)
     input_tensor = input_tensor.repeat(batch_size, 1, 1, 1).to(device)
